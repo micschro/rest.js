@@ -23,7 +23,8 @@ function gather (results, iterator, mapFn) {
         earlyExit = true
       }
 
-      results = results.concat(mapFn ? mapFn(result.value, done) : result.value.data)
+      const dataHolder = result.value ? result.value : result
+      results = results.concat(mapFn ? mapFn(dataHolder, done) : dataHolder.data)
 
       if (earlyExit) {
         return results
